@@ -1,6 +1,10 @@
 from choiceQuestion import ChoiceQuestion
 
+
 def main():
+
+    score = ChoiceQuestion()
+
     first = ChoiceQuestion()
     first.setQuestion("5x5")
     first.addChoice("25", True)
@@ -29,14 +33,20 @@ def main():
     fourth.addChoice("18", True)
     fourth.addChoice("9", False)
 
-    presentQuestion(first)
-    presentQuestion(second)
-    presentQuestion(third)
-    presentQuestion(fourth)
+    presentQuestion(first, score)
+    presentQuestion(second, score)
+    presentQuestion(third, score)
+    presentQuestion(fourth, score)
 
-def presentQuestion(q):
+    print("Your Score is", score.displayScore())
+    if score.displayScore() == 4:
+        print("You got perfect!")
+
+def presentQuestion(q, s):
     q.display()
     answer = input("Your Answer: ")
     print(q.checkAnswer(answer))
+    if q.checkAnswer(answer):
+        s.addScore()
 
 main()
